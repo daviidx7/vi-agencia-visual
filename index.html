@@ -4,11 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VI AGÊNCIA VISUAL</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
 <style>
   :root{
     --ink:#efe4cd;
@@ -19,2294 +17,936 @@
     --gold:#a8672e;
     --gold-bright:#c98b3e;
     --rust:#8a5a3a;
-    --line:rgba(74,56,38,0.18);
-    --grain-opacity:0.05;
+    --line: rgba(74,56,38,0.18);
+    --grain-opacity: 0.05;
   }
 
-  *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-  }
+  *{margin:0;padding:0;box-sizing:border-box;}
 
-  html{
-    scroll-behavior:smooth;
-  }
+  html{scroll-behavior:smooth;}
 
   body{
     background:var(--ink);
     color:var(--paper);
-    font-family:'Space Grotesk',sans-serif;
+    font-family:'Space Grotesk', sans-serif;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
   }
 
   /* ---------- ANIMAÇÕES GLOBAIS ---------- */
-
   @keyframes dropIn{
-    0%{
-      opacity:0;
-      transform:translateY(-46px) rotate(-8deg);
-    }
-
-    60%{
-      opacity:1;
-      transform:translateY(6px) rotate(2deg);
-    }
-
-    100%{
-      opacity:1;
-      transform:translateY(0) rotate(0deg);
-    }
+    0%{ opacity:0; transform:translateY(-46px) rotate(-8deg); }
+    60%{ opacity:1; transform:translateY(6px) rotate(2deg); }
+    100%{ opacity:1; transform:translateY(0) rotate(0deg); }
   }
-
   @keyframes fadeUp{
-    from{
-      opacity:0;
-      transform:translateY(20px);
-    }
-
-    to{
-      opacity:1;
-      transform:translateY(0);
-    }
+    from{ opacity:0; transform:translateY(20px); }
+    to{ opacity:1; transform:translateY(0); }
   }
-
   @keyframes fadeInScale{
-    from{
-      opacity:0;
-      transform:scale(1.06);
-    }
-
-    to{
-      opacity:1;
-      transform:scale(1);
-    }
+    from{ opacity:0; transform:scale(1.06); }
+    to{ opacity:1; transform:scale(1); }
   }
-
   .letter{
     display:inline-block;
     opacity:0;
     animation:dropIn .65s cubic-bezier(.17,.84,.44,1) forwards;
-    will-change:transform,opacity;
+    will-change:transform, opacity;
   }
 
-  /* ---------- BARRA DE PROGRESSO ---------- */
-
+  /* ---------- BARRA DE PROGRESSO DE LEITURA ---------- */
   .scroll-progress{
-    position:fixed;
-    top:0;
-    left:0;
-    height:3px;
-    width:0%;
-    background:linear-gradient(
-      90deg,
-      var(--gold),
-      var(--gold-bright)
-    );
-    z-index:1500;
-    transition:width .1s linear;
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--gold), var(--gold-bright));
+    z-index:1500; transition:width .1s linear;
   }
 
-  /* ---------- DESTAQUE DOURADO ---------- */
-
+  /* ---------- DESTAQUE DOURADO NO TÍTULO ---------- */
   .hero-copy h1 .i .letter{
     color:var(--gold-bright);
     text-shadow:0 0 18px rgba(201,139,62,0.35);
   }
 
-  /* ---------- EFEITO SHINE ---------- */
-
-  .btn{
-    position:relative;
-    overflow:hidden;
-  }
-
+  /* ---------- EFEITO SHINE NOS BOTÕES ---------- */
+  .btn{ position:relative; overflow:hidden; }
   .btn::after{
-    content:'';
-    position:absolute;
-    top:0;
-    left:-60%;
-    width:40%;
-    height:100%;
-    background:linear-gradient(
-      115deg,
-      transparent,
-      rgba(255,255,255,0.45),
-      transparent
-    );
+    content:''; position:absolute; top:0; left:-60%; width:40%; height:100%;
+    background:linear-gradient(115deg, transparent, rgba(255,255,255,0.45), transparent);
     transform:skewX(-20deg);
     transition:left .6s ease;
   }
+  .btn:hover::after{ left:130%; }
 
-  .btn:hover::after{
-    left:130%;
-  }
+  ::selection{ background:var(--gold); color:var(--paper); }
 
-  ::selection{
-    background:var(--gold);
-    color:var(--paper);
-  }
+  a{ color:inherit; text-decoration:none; }
 
-  a{
-    color:inherit;
-    text-decoration:none;
-  }
+  img{ max-width:100%; }
 
-  img{
-    max-width:100%;
-  }
-
-  /* ---------- FILM GRAIN ---------- */
-
+  /* film grain overlay across whole page */
   .grain{
-    position:fixed;
-    inset:0;
-    z-index:999;
-    pointer-events:none;
-    opacity:var(--grain-opacity);
-    mix-blend-mode:overlay;
-
+    position:fixed; inset:0; z-index:999; pointer-events:none;
+    opacity:var(--grain-opacity); mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /* ---------- EYEBROW ---------- */
-
   .eyebrow{
-    font-family:'JetBrains Mono',monospace;
+    font-family:'JetBrains Mono', monospace;
     font-size:11.5px;
     letter-spacing:.22em;
     text-transform:uppercase;
     color:var(--gold-bright);
-
-    display:flex;
-    align-items:center;
-    gap:10px;
-
+    display:flex; align-items:center; gap:10px;
     opacity:0;
     animation:fadeUp .7s ease forwards;
-    animation-delay:.15s;
+    animation-delay:0.15s;
   }
-
   .eyebrow::before{
-    content:'';
-    width:26px;
-    height:1px;
-    background:var(--gold);
+    content:''; width:26px; height:1px; background:var(--gold);
   }
 
-  h1,
-  h2,
-  h3{
-    font-family:'Fraunces',serif;
-    font-weight:400;
-    line-height:1.05;
-  }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:400; line-height:1.05; }
 
   /* ---------- HERO ---------- */
-
   .hero{
     position:relative;
     display:grid;
-    grid-template-columns:1.05fr .95fr;
+    grid-template-columns: 1.05fr 0.95fr;
     align-items:center;
   }
-
+  @media (max-width:900px){
+    .hero{ grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width:560px){
+    .hero{ grid-template-columns: 0.92fr 1.08fr; }
+  }
   .hero-copy{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
-    padding:
-      clamp(28px,9vw,110px)
-      clamp(14px,4vw,60px)
-      clamp(24px,5vw,80px);
-
+    display:flex; flex-direction:column; justify-content:center;
+    padding:clamp(28px,9vw,110px) clamp(14px,4vw,60px) clamp(24px,5vw,80px);
     gap:clamp(10px,2vw,26px);
-
     position:relative;
     z-index:2;
   }
-
   .hero-copy h1{
-    font-size:clamp(22px,7.5vw,76px);
-    letter-spacing:-.01em;
+    font-size:clamp(22px, 7.5vw, 76px);
+    letter-spacing:-0.01em;
     max-width:11ch;
     opacity:0;
   }
-
-  .hero-copy h1.letters-ready{
-    opacity:1;
-  }
-
-  .hero-copy h1 .i{
-    font-style:italic;
-    font-weight:300;
-  }
-
+  .hero-copy h1.letters-ready{ opacity:1; }
+  .hero-copy h1 .i{ font-style:italic; font-weight:300;}
   .hero-copy p.lede{
     max-width:44ch;
-
     font-size:clamp(12.5px,1.6vw,16px);
     line-height:1.6;
-
     color:var(--paper-dim);
-
     opacity:0;
     animation:fadeUp .7s ease forwards;
     animation-delay:1.15s;
   }
-
   .hero-cta{
-    display:flex;
-    gap:14px;
-    margin-top:8px;
-    flex-wrap:wrap;
-
+    display:flex; gap:14px; margin-top:8px; flex-wrap:wrap;
     opacity:0;
     animation:fadeUp .7s ease forwards;
     animation-delay:1.35s;
   }
-
   .btn{
-    font-family:'JetBrains Mono',monospace;
-    font-size:12.5px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px; letter-spacing:.08em; text-transform:uppercase;
     padding:14px 22px;
-
     border:1px solid var(--line);
-    background:transparent;
-    color:inherit;
-
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-
+    background:transparent; color:inherit;
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
     transition:all .3s ease;
-
     white-space:nowrap;
     cursor:pointer;
     border-radius:0;
   }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn:active{ transform:translateY(0); }
+  .btn.solid{ background:var(--gold); color:var(--ink); border-color:var(--gold); }
+  .btn.solid:hover{ background:var(--gold-bright); }
+  .btn.ghost:hover{ border-color:var(--gold); color:var(--gold-bright); }
 
-  .btn:hover{
-    transform:translateY(-2px);
+  @media (max-width:560px){
+    .eyebrow{ font-size:10px; letter-spacing:.16em; gap:8px; }
+    .eyebrow::before{ width:16px; }
+    .hero-cta{ flex-direction:column; align-items:stretch; gap:10px; }
+    .btn{ padding:12px 14px; font-size:11px; white-space:normal; text-align:center; }
   }
-
-  .btn:active{
-    transform:translateY(0);
-  }
-
-  .btn.solid{
-    background:var(--gold);
-    color:var(--ink);
-    border-color:var(--gold);
-  }
-
-  .btn.solid:hover{
-    background:var(--gold-bright);
-  }
-
-  .btn.ghost:hover{
-    border-color:var(--gold);
-    color:var(--gold-bright);
-  }
-
-  /* ---------- HERO FOTO ---------- */
 
   .hero-frame-wrap{
     position:relative;
     overflow:hidden;
-
-    aspect-ratio:1376 / 1500;
+    aspect-ratio: 1376 / 1500;
     max-height:640px;
-
     border-radius:4px;
-
     opacity:0;
     animation:fadeInScale 1s ease forwards;
-    animation-delay:.2s;
+    animation-delay:0.2s;
   }
-
   .hero-frame-wrap img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-    object-position:center 12%;
-
+    width:100%; height:100%; object-fit:cover;
+    object-position: center 12%;
     filter:saturate(1.05) contrast(1.03);
-
     display:block;
-
-    transition:
-      transform 1.2s cubic-bezier(.16,.84,.44,1);
+    transition:transform 1.2s cubic-bezier(.16,.84,.44,1);
   }
-
-  .hero-frame-wrap:hover img{
-    transform:scale(1.045);
-  }
-
+  .hero-frame-wrap:hover img{ transform:scale(1.045); }
   .hero-frame-wrap::after{
-    content:'';
-    position:absolute;
-    inset:0;
-
-    background:
-      linear-gradient(
-        to top,
-        rgba(21,17,13,.85) 0%,
-        rgba(21,17,13,0) 22%
-      );
+    /* subtle bottom vignette so caption bar reads */
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(21,17,13,0.85) 0%, rgba(21,17,13,0) 22%);
   }
 
-  /* ---------- VIEWFINDER ---------- */
+  /* viewfinder corner brackets, signature element */
+  .viewfinder{ position:absolute; inset:20px; z-index:5; pointer-events:none; }
+  .vf-corner{ position:absolute; width:26px; height:26px; }
+  .vf-corner::before, .vf-corner::after{ content:''; position:absolute; background:var(--gold-bright); }
+  .vf-tl{ top:0; left:0; } .vf-tr{ top:0; right:0; } .vf-bl{ bottom:0; left:0; } .vf-br{ bottom:0; right:0; }
+  .vf-corner::before{ width:2px; height:100%; }
+  .vf-corner::after{ width:100%; height:2px; }
+  .vf-tr::before{ right:0; } .vf-tr::after{ top:0; }
+  .vf-tl::before{ left:0; } .vf-tl::after{ top:0; }
+  .vf-bl::before{ left:0; } .vf-bl::after{ bottom:0; }
+  .vf-br::before{ right:0; } .vf-br::after{ bottom:0; }
 
-  .viewfinder{
-    position:absolute;
-    inset:20px;
-    z-index:5;
-    pointer-events:none;
+  @media (max-width:900px){
+    .hero-frame-wrap{ aspect-ratio: 3 / 4; max-height:none; border-radius:6px; }
+  }
+  @media (max-width:560px){
+    .hero-frame-wrap{ aspect-ratio: 3 / 4.4; margin:14px; }
   }
 
-  .vf-corner{
-    position:absolute;
-    width:26px;
-    height:26px;
-  }
+  /* ---------- SECTION SHELL ---------- */
+  section{ position:relative; padding:clamp(56px,10vw,120px) clamp(20px,6vw,80px); }
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:clamp(32px,6vw,64px); gap:24px; flex-wrap:wrap; border-bottom:1px solid var(--line); padding-bottom:24px; }
+  .section-head h2{ font-size:clamp(28px,4vw,48px); }
+  .section-head .count{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--paper-dim); }
 
-  .vf-corner::before,
-  .vf-corner::after{
-    content:'';
-    position:absolute;
-    background:var(--gold-bright);
-  }
-
-  .vf-tl{
-    top:0;
-    left:0;
-  }
-
-  .vf-tr{
-    top:0;
-    right:0;
-  }
-
-  .vf-bl{
-    bottom:0;
-    left:0;
-  }
-
-  .vf-br{
-    bottom:0;
-    right:0;
-  }
-
-  .vf-corner::before{
-    width:2px;
-    height:100%;
-  }
-
-  .vf-corner::after{
-    width:100%;
-    height:2px;
-  }
-
-  .vf-tr::before{
-    right:0;
-  }
-
-  .vf-tr::after{
-    top:0;
-  }
-
-  .vf-tl::before{
-    left:0;
-  }
-
-  .vf-tl::after{
-    top:0;
-  }
-
-  .vf-bl::before{
-    left:0;
-  }
-
-  .vf-bl::after{
-    bottom:0;
-  }
-
-  .vf-br::before{
-    right:0;
-  }
-
-  .vf-br::after{
-    bottom:0;
-  }
-
-  /* ---------- SECTION ---------- */
-
-  section{
-    position:relative;
-
-    padding:
-      clamp(56px,10vw,120px)
-      clamp(20px,6vw,80px);
-  }
-
-  .section-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-
-    margin-bottom:clamp(32px,6vw,64px);
-
-    gap:24px;
-    flex-wrap:wrap;
-
-    border-bottom:1px solid var(--line);
-    padding-bottom:24px;
-  }
-
-  .section-head h2{
-    font-size:clamp(28px,4vw,48px);
-  }
-
-  .section-head .count{
-    font-family:'JetBrains Mono',monospace;
-    font-size:13px;
-    color:var(--paper-dim);
-  }
-
-  /* ---------- FRAMES ---------- */
-
-  .sprocket-row{
-    display:flex;
-    justify-content:space-between;
-
-    padding:0 6px;
-    margin-bottom:2px;
-  }
-
-  .sprocket-row span{
-    width:10px;
-    height:6px;
-
-    background:var(--paper-dim);
-    opacity:.35;
-
-    border-radius:1px;
-  }
+  /* ---------- FILMSTRIP / WORK (reservado para uso futuro) ---------- */
+  .sprocket-row{ display:flex; justify-content:space-between; padding:0 6px; margin-bottom:2px; }
+  .sprocket-row span{ width:10px; height:6px; background:var(--paper-dim); opacity:.35; border-radius:1px; }
 
   .frames{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-
+    grid-template-columns:repeat(3, 1fr);
     gap:2px;
-
     background:var(--line);
     border:1px solid var(--line);
   }
+  @media (max-width:860px){ .frames{ grid-template-columns:1fr; } }
 
   .frame{
     background:var(--film);
-
-    padding:
-      32px
-      clamp(20px,4vw,30px);
-
+    padding:32px clamp(20px,4vw,30px);
     min-height:220px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-
+    display:flex; flex-direction:column; justify-content:space-between;
     position:relative;
-
-    opacity:0;
-    transform:translateY(24px);
-
-    transition:
-      opacity .7s ease,
-      transform .7s ease,
-      background .4s ease;
+    opacity:0; transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease, background .4s ease;
   }
+  .frame.in{ opacity:1; transform:translateY(0); }
+  .frame:hover{ background:#d5c39a; }
+  .frame .fnum{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold); letter-spacing:.1em; }
+  .frame h3{ font-size:clamp(20px,2.4vw,26px); margin-top:18px; max-width:16ch; }
+  .frame .meta{ display:flex; justify-content:space-between; margin-top:24px; font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--paper-dim); letter-spacing:.05em; text-transform:uppercase; }
+  .frame .meta em{ color:var(--gold-bright); font-style:normal; }
 
-  .frame.in{
-    opacity:1;
-    transform:translateY(0);
-  }
+  /* ---------- TRABALHOS / PORTFÓLIO ---------- */
+  .trabalhos-panel .frames{ grid-template-columns:repeat(2,1fr); }
+  @media (max-width:700px){ .trabalhos-panel .frames{ grid-template-columns:1fr; } }
 
-  .frame:hover{
-    background:#d5c39a;
-  }
-
-  .frame .fnum{
-    font-family:'JetBrains Mono',monospace;
-    font-size:12px;
-    color:var(--gold);
-    letter-spacing:.1em;
-  }
-
-  .frame h3{
-    font-size:clamp(20px,2.4vw,26px);
-    margin-top:18px;
-    max-width:16ch;
-  }
-
-  .frame .meta{
-    display:flex;
-    justify-content:space-between;
-
-    margin-top:24px;
-
-    font-family:'JetBrains Mono',monospace;
-    font-size:11.5px;
-
-    color:var(--paper-dim);
-
-    letter-spacing:.05em;
-    text-transform:uppercase;
-  }
-
-  .frame .meta em{
-    color:var(--gold-bright);
-    font-style:normal;
-  }
-
-  /* ---------- TRABALHOS ---------- */
-
-  .trabalhos-panel .frames{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  /* ---------- OVERLAY ---------- */
-
+  /* ---------- OVERLAY / PAINEL DE TRABALHOS ---------- */
   .trabalhos-overlay{
-    position:fixed;
-    inset:0;
-    z-index:500;
-
-    background:rgba(21,17,13,.6);
-
-    display:none;
-
-    align-items:flex-start;
-    justify-content:center;
-
-    padding:
-      clamp(16px,4vw,60px)
-      14px;
-
+    position:fixed; inset:0; z-index:500;
+    background:rgba(21,17,13,0.6);
+    display:none; align-items:flex-start; justify-content:center;
+    padding:clamp(16px,4vw,60px) 14px;
     overflow-y:auto;
   }
-
-  .trabalhos-overlay.open{
-    display:flex;
-  }
-
+  .trabalhos-overlay.open{ display:flex; }
   .trabalhos-panel{
     background:var(--ink);
-
-    width:100%;
-    max-width:1100px;
-
+    width:100%; max-width:1100px;
     border-radius:8px;
-
-    padding:
-      clamp(28px,6vw,64px)
-      clamp(20px,5vw,56px)
-      clamp(40px,6vw,60px);
-
+    padding:clamp(28px,6vw,64px) clamp(20px,5vw,56px) clamp(40px,6vw,60px);
     position:relative;
     margin:20px 0;
   }
-
   .trabalhos-close{
-    position:sticky;
-    top:0;
-
-    margin-left:auto;
-    margin-bottom:12px;
-
-    width:38px;
-    height:38px;
-
-    border-radius:50%;
-
-    border:1px solid var(--line);
-    background:var(--ink);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:20px;
-    line-height:1;
-
-    color:var(--paper);
-
-    cursor:pointer;
-
-    transition:.25s ease;
-
+    position:sticky; top:0;
+    margin-left:auto; margin-bottom:12px;
+    width:38px; height:38px; border-radius:50%;
+    border:1px solid var(--line); background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px; line-height:1; color:var(--paper);
+    cursor:pointer; transition:.25s ease;
     z-index:5;
   }
-
-  .trabalhos-close:hover{
-    border-color:var(--gold);
-    color:var(--gold-bright);
-  }
-
-  /* ---------- SUB LABEL ---------- */
+  .trabalhos-close:hover{ border-color:var(--gold); color:var(--gold-bright); }
 
   .sub-label{
-    font-family:'Fraunces',serif;
-    font-style:italic;
-    font-weight:400;
-
+    font-family:'Fraunces', serif; font-style:italic; font-weight:400;
     font-size:clamp(20px,2.6vw,28px);
-
     margin:52px 0 22px;
   }
+  .sub-label:first-of-type{ margin-top:0; }
 
-  .sub-label:first-of-type{
-    margin-top:0;
-  }
+  .portfolio-card p{ color:var(--paper-dim); font-size:14.5px; line-height:1.6; margin-top:14px; }
 
-  .portfolio-card p{
-    color:var(--paper-dim);
-    font-size:14.5px;
-    line-height:1.6;
-    margin-top:14px;
-  }
-
-  /* ---------- GALERIA ---------- */
-
-  .gallery-case{
-    margin-bottom:44px;
-  }
-
-  .gallery-case-head h3{
-    font-size:clamp(22px,2.6vw,28px);
-    margin-top:6px;
-  }
-
-  .gallery-case-head p{
-    color:var(--paper-dim);
-    font-size:14.5px;
-    line-height:1.6;
-
-    margin-top:10px;
-    max-width:60ch;
-  }
-
+  /* ---------- GALERIA DE FOTOS (portfólio real) ---------- */
+  .gallery-case{ margin-bottom:44px; }
+  .gallery-case-head h3{ font-size:clamp(22px,2.6vw,28px); margin-top:6px; }
+  .gallery-case-head p{ color:var(--paper-dim); font-size:14.5px; line-height:1.6; margin-top:10px; max-width:60ch; }
   .gallery-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-
+    grid-template-columns:repeat(3, 1fr);
     gap:6px;
-
     margin-top:20px;
   }
-
+  @media (max-width:420px){
+    .gallery-grid{ gap:4px; }
+  }
   .gallery-grid img{
-    width:100%;
-    aspect-ratio:1/1;
-
-    object-fit:cover;
-
-    border-radius:3px;
-
-    cursor:pointer;
-    display:block;
-
-    filter:grayscale(55%) brightness(.96);
-
-    opacity:0;
-    transform:scale(.9);
-
-    transition:
-      opacity .5s ease,
-      transform .5s ease,
-      filter .35s ease,
-      box-shadow .3s ease;
+    width:100%; aspect-ratio:1/1; object-fit:cover;
+    border-radius:3px; cursor:pointer; display:block;
+    filter:grayscale(55%) brightness(0.96);
+    opacity:0; transform:scale(0.9);
+    transition:opacity .5s ease, transform .5s ease, filter .35s ease, box-shadow .3s ease;
   }
-
-  .trabalhos-overlay.open .gallery-grid img{
-    opacity:1;
-    transform:scale(1);
-  }
-
-  .gallery-grid img:nth-child(1){
-    transition-delay:.05s;
-  }
-
-  .gallery-grid img:nth-child(2){
-    transition-delay:.15s;
-  }
-
-  .gallery-grid img:nth-child(3){
-    transition-delay:.25s;
-  }
-
+  .trabalhos-overlay.open .gallery-grid img{ opacity:1; transform:scale(1); }
+  .gallery-grid img:nth-child(1){ transition-delay:.05s; }
+  .gallery-grid img:nth-child(2){ transition-delay:.15s; }
+  .gallery-grid img:nth-child(3){ transition-delay:.25s; }
   .gallery-grid img:hover{
     filter:grayscale(0%) brightness(1.02);
     transform:scale(1.045);
-    box-shadow:0 6px 18px rgba(21,17,13,.25);
+    box-shadow:0 6px 18px rgba(21,17,13,0.25);
   }
 
   /* ---------- LIGHTBOX ---------- */
-
   .lightbox{
-    position:fixed;
-    inset:0;
-    z-index:700;
-
-    background:rgba(10,8,6,.94);
-
-    display:none;
-
-    align-items:center;
-    justify-content:center;
-
+    position:fixed; inset:0; z-index:700;
+    background:rgba(10,8,6,0.94);
+    display:none; align-items:center; justify-content:center;
     padding:20px;
   }
-
-  .lightbox.open{
-    display:flex;
-  }
-
-  .lightbox img{
-    max-width:92vw;
-    max-height:86vh;
-
-    object-fit:contain;
-
-    border-radius:4px;
-
-    display:block;
-  }
-
+  .lightbox.open{ display:flex; }
+  .lightbox img{ max-width:92vw; max-height:86vh; object-fit:contain; border-radius:4px; display:block; }
   .lightbox-close{
-    position:fixed;
-
-    top:18px;
-    right:18px;
-
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-
-    border:1px solid rgba(243,234,217,.3);
-
-    background:transparent;
-    color:#f3ead9;
-
-    font-size:20px;
-    line-height:1;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    cursor:pointer;
-
-    transition:.25s ease;
-
-    z-index:2;
+    position:fixed; top:18px; right:18px;
+    width:40px; height:40px; border-radius:50%;
+    border:1px solid rgba(243,234,217,0.3); background:transparent;
+    color:#f3ead9; font-size:20px; line-height:1;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:.25s ease; z-index:2;
   }
-
-  .lightbox-close:hover{
-    border-color:#f3ead9;
-  }
-
+  .lightbox-close:hover{ border-color:#f3ead9; }
   .lightbox-nav{
-    position:fixed;
-
-    top:50%;
-    transform:translateY(-50%);
-
-    background:transparent;
-    border:none;
-
-    color:#f3ead9;
-
-    font-size:38px;
-    line-height:1;
-
-    padding:10px 14px;
-
-    cursor:pointer;
-
-    opacity:.7;
-
-    transition:opacity .2s ease;
+    position:fixed; top:50%; transform:translateY(-50%);
+    background:transparent; border:none; color:#f3ead9;
+    font-size:38px; line-height:1; padding:10px 14px;
+    cursor:pointer; opacity:.7; transition:opacity .2s ease;
   }
-
-  .lightbox-nav:hover{
-    opacity:1;
+  .lightbox-nav:hover{ opacity:1; }
+  .lightbox-nav.prev{ left:6px; }
+  .lightbox-nav.next{ right:6px; }
+  @media (max-width:600px){
+    .lightbox-nav{ font-size:30px; padding:8px 10px; }
   }
-
-  .lightbox-nav.prev{
-    left:6px;
-  }
-
-  .lightbox-nav.next{
-    right:6px;
-  }
-
-  /* ---------- VIEW LINK ---------- */
 
   .view-link{
-    font-family:'JetBrains Mono',monospace;
-
-    font-size:12px;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-
-    color:var(--gold-bright);
-
-    border-bottom:1px solid var(--gold-bright);
-
-    padding-bottom:3px;
-
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-
-    margin-top:20px;
-
-    align-self:flex-start;
-
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--gold-bright); border-bottom:1px solid var(--gold-bright); padding-bottom:3px;
+    display:inline-flex; align-items:center; gap:6px; margin-top:20px; align-self:flex-start;
     transition:.25s ease;
   }
+  .view-link:hover{ color:var(--paper); border-color:var(--paper); }
 
-  .view-link:hover{
-    color:var(--paper);
-    border-color:var(--paper);
-  }
-
-  /* ---------- PREÇOS ---------- */
-
-  .pricing-tabs{
-    display:flex;
-    gap:10px;
-
-    margin-bottom:32px;
-
-    flex-wrap:wrap;
-  }
-
+  /* ---------- PACOTES & PREÇOS ---------- */
+  .pricing-tabs{ display:flex; gap:10px; margin-bottom:32px; flex-wrap:wrap; }
   .tab-btn{
-    font-family:'JetBrains Mono',monospace;
-
-    font-size:12px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-
-    padding:12px 22px;
-
-    border:1px solid var(--line);
-
-    background:transparent;
-    color:var(--paper-dim);
-
-    cursor:pointer;
-
-    transition:.25s ease;
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    padding:12px 22px; border:1px solid var(--line); background:transparent; color:var(--paper-dim);
+    cursor:pointer; transition:.25s ease;
   }
+  .tab-btn.active{ background:var(--gold); color:var(--ink); border-color:var(--gold); }
+  .tab-btn:hover:not(.active){ border-color:var(--gold); color:var(--paper); }
 
-  .tab-btn.active{
-    background:var(--gold);
-    color:var(--ink);
-    border-color:var(--gold);
-  }
-
-  .tab-btn:hover:not(.active){
-    border-color:var(--gold);
-    color:var(--paper);
-  }
-
-  .pricing-panel{
-    display:none;
-  }
-
-  .pricing-panel.active{
-    display:block;
-    animation:fadeUp .5s ease;
-  }
+  .pricing-panel{ display:none; }
+  .pricing-panel.active{ display:block; animation:fadeUp .5s ease; }
 
   .price-grid{
-    display:grid;
-
-    grid-template-columns:
-      repeat(auto-fit,minmax(230px,1fr));
-
-    gap:2px;
-
-    background:var(--line);
-    border:1px solid var(--line);
-
-    margin-bottom:14px;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:2px; background:var(--line); border:1px solid var(--line); margin-bottom:14px;
   }
-
   .price-card{
-    background:var(--film);
-
-    padding:
-      clamp(24px,4vw,32px)
-      clamp(20px,3vw,26px);
-
-    display:flex;
-    flex-direction:column;
-
-    gap:14px;
-
-    transition:
-      transform .3s ease,
-      background .3s ease;
+    background:var(--film); padding:clamp(24px,4vw,32px) clamp(20px,3vw,26px);
+    display:flex; flex-direction:column; gap:14px;
+    transition:transform .3s ease, background .3s ease;
   }
+  .price-card:hover{ background:#d5c39a; transform:translateY(-4px); }
+  .price-card .ptag{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-bright); }
+  .price-card h3{ font-size:clamp(22px,2.4vw,28px); }
+  .price-card .price{ font-family:'JetBrains Mono',monospace; font-size:18px; color:var(--gold); font-weight:500; }
+  .price-card ul{ list-style:none; display:flex; flex-direction:column; gap:6px; }
+  .price-card ul li{ font-size:13.5px; color:var(--paper-dim); line-height:1.5; padding-left:16px; position:relative; }
+  .price-card ul li::before{ content:'—'; position:absolute; left:0; color:var(--gold); }
+  .price-card .obs{ font-size:12px; line-height:1.6; color:var(--paper-dim); border-top:1px solid var(--line); padding-top:14px; margin-top:auto; }
+  .price-card .obs strong{ color:var(--rust); }
 
-  .price-card:hover{
-    background:#d5c39a;
-    transform:translateY(-4px);
-  }
+  .pricing-note{ font-size:14px; color:var(--paper-dim); margin-top:8px; }
+  .pricing-note a{ color:var(--gold-bright); border-bottom:1px solid var(--gold-bright); }
 
-  .price-card .ptag{
-    font-family:'JetBrains Mono',monospace;
-
-    font-size:11px;
-    letter-spacing:.1em;
-
-    text-transform:uppercase;
-
-    color:var(--gold-bright);
-  }
-
-  .price-card h3{
-    font-size:clamp(22px,2.4vw,28px);
-  }
-
-  .price-card .price{
-    font-family:'JetBrains Mono',monospace;
-
-    font-size:18px;
-
-    color:var(--gold);
-
-    font-weight:500;
-  }
-
-  .price-card ul{
-    list-style:none;
-
-    display:flex;
-    flex-direction:column;
-
-    gap:6px;
-  }
-
-  .price-card ul li{
-    font-size:13.5px;
-
-    color:var(--paper-dim);
-
-    line-height:1.5;
-
-    padding-left:16px;
-
-    position:relative;
-  }
-
-  .price-card ul li::before{
-    content:'—';
-
-    position:absolute;
-    left:0;
-
-    color:var(--gold);
-  }
-
-  .price-card .obs{
-    font-size:12px;
-
-    line-height:1.6;
-
-    color:var(--paper-dim);
-
-    border-top:1px solid var(--line);
-
-    padding-top:14px;
-
-    margin-top:auto;
-  }
-
-  .price-card .obs strong{
-    color:var(--rust);
-  }
-
-  .pricing-note{
-    font-size:14px;
-    color:var(--paper-dim);
-    margin-top:8px;
-  }
-
-  .pricing-note a{
-    color:var(--gold-bright);
-    border-bottom:1px solid var(--gold-bright);
-  }
-
-  /* ==========================================================
-     SOBRE
-     ========================================================== */
 
   .about{
     display:grid;
-
-    /* TEXTO DE UM LADO + FOTO DO OUTRO */
-    grid-template-columns:1fr 1fr;
-
-    gap:clamp(24px,5vw,70px);
-
-    /*
-      As duas colunas terão a mesma altura.
-      A foto acompanha a altura do bloco de texto.
-    */
+    grid-template-columns: 0.9fr 1.1fr;
+    gap:clamp(20px,5vw,70px);
     align-items:stretch;
-  }
-
-  /*
-    Bloco do texto.
-    Centraliza verticalmente o conteúdo em relação à foto.
-  */
-  .about > div{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
   }
 
   .about .lede{
     font-size:clamp(17px,2.6vw,30px);
-
-    font-family:'Fraunces',serif;
-
+    font-family:'Fraunces', serif;
     font-style:italic;
     font-weight:400;
-
     line-height:1.35;
-
     color:var(--paper);
-
     max-width:24ch;
   }
 
   .about p.body-text{
     margin-top:18px;
-
     color:var(--paper-dim);
-
     line-height:1.7;
-
     font-size:clamp(12.5px,1.6vw,15px);
-
     max-width:52ch;
-
     white-space:pre-line;
   }
 
-  /*
-    FOTO DO CASAL
-
-    object-fit:contain = NÃO CORTA A FOTO.
-    A imagem inteira permanece visível.
-  */
   .about-photo{
     width:100%;
     height:100%;
-
-    min-height:0;
-
-    object-fit:contain;
-    object-position:center;
-
+    min-height:260px;
+    object-fit:cover;
+    object-position:center 22%;
     border-radius:4px;
-
     display:block;
-
-    background:transparent;
-
-    align-self:stretch;
   }
 
-  /* ---------- SOBRE NO TABLET/CELULAR ---------- */
-
+  /* ---------- SOBRE NO CELULAR ---------- */
   @media (max-width:700px){
-
     .about{
-      /*
-        Continua lado a lado no celular.
-      */
-      grid-template-columns:
-        minmax(0,.95fr)
-        minmax(0,1.05fr);
-
-      gap:16px;
-
-      align-items:stretch;
-    }
-
-    .about > div{
-      justify-content:center;
+      grid-template-columns:1fr;
+      gap:30px;
+      align-items:start;
     }
 
     .about .lede{
       max-width:100%;
-
-      font-size:clamp(19px,5.8vw,28px);
-
+      font-size:clamp(24px,7vw,32px);
       line-height:1.25;
     }
 
     .about p.body-text{
       max-width:100%;
-
-      font-size:14px;
-
-      line-height:1.65;
+      font-size:15px;
+      line-height:1.7;
     }
 
     .about-photo{
       width:100%;
-      height:100%;
-
+      height:auto;
       min-height:0;
-
-      /*
-        IMPORTANTE:
-        mantém a foto inteira.
-        NÃO usa cover.
-      */
-      object-fit:contain;
-
-      object-position:center;
-
+      aspect-ratio:3 / 4;
+      object-fit:cover;
+      object-position:center 22%;
       border-radius:8px;
-
-      align-self:stretch;
     }
   }
 
   @media (max-width:400px){
-
     .about{
-      grid-template-columns:
-        minmax(0,.92fr)
-        minmax(0,1.08fr);
-
-      gap:12px;
-    }
-
-    .about .lede{
-      font-size:clamp(18px,5.5vw,25px);
-    }
-
-    .about p.body-text{
-      font-size:13px;
+      gap:26px;
     }
 
     .about-photo{
-      object-fit:contain;
+      aspect-ratio:3 / 4;
     }
   }
 
-  /* ---------- CALLSHEET ---------- */
+  .callsheet{ border:1px solid var(--line); }
+  .cs-row{ display:grid; grid-template-columns:1fr 1.6fr; border-bottom:1px solid var(--line); }
+  @media (max-width:520px){ .cs-row{ grid-template-columns:1fr; } }
+  .cs-row:last-child{ border-bottom:none; }
+  .cs-key{ padding:18px 20px; font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-bright); border-right:1px solid var(--line); }
+  @media (max-width:520px){ .cs-key{ border-right:none; border-bottom:1px solid var(--line); } }
+  .cs-val{ padding:18px 20px; font-size:14.5px; color:var(--paper); line-height:1.6; }
 
-  .callsheet{
-    border:1px solid var(--line);
-  }
-
-  .cs-row{
-    display:grid;
-
-    grid-template-columns:1fr 1.6fr;
-
-    border-bottom:1px solid var(--line);
-  }
-
-  .cs-row:last-child{
-    border-bottom:none;
-  }
-
-  .cs-key{
-    padding:18px 20px;
-
-    font-family:'JetBrains Mono',monospace;
-
-    font-size:11.5px;
-    letter-spacing:.1em;
-
-    text-transform:uppercase;
-
-    color:var(--gold-bright);
-
-    border-right:1px solid var(--line);
-  }
-
-  .cs-val{
-    padding:18px 20px;
-
-    font-size:14.5px;
-
-    color:var(--paper);
-
-    line-height:1.6;
-  }
-
-  /* ---------- CONTATO ---------- */
-
-  .contact{
-    background:var(--ink-soft);
-  }
-
+  /* ---------- CONTACT / SLATE ---------- */
+  .contact{ background:var(--ink-soft); }
   .slate{
     border:2px solid var(--paper);
-
-    padding:
-      clamp(28px,6vw,46px)
-      clamp(18px,4vw,60px);
-
+    padding:clamp(28px,6vw,46px) clamp(18px,4vw,60px);
     position:relative;
   }
-
-  .contact h2{
-    font-size:clamp(30px,6vw,72px);
-
-    max-width:14ch;
-  }
-
-  .contact-links{
-    display:flex;
-
-    gap:clamp(18px,4vw,40px);
-
-    margin-top:clamp(28px,5vw,44px);
-
-    flex-wrap:wrap;
-  }
-
-  .contact-links a{
-    font-family:'JetBrains Mono',monospace;
-
-    font-size:13px;
-    letter-spacing:.05em;
-
-    text-transform:uppercase;
-
-    border-bottom:1px solid var(--line);
-
-    padding-bottom:6px;
-
-    display:inline-flex;
-
-    gap:8px;
-
-    align-items:center;
-
-    transition:.3s;
-  }
-
-  .contact-links a:hover{
-    color:var(--gold-bright);
-    border-color:var(--gold-bright);
-  }
-
-  /* ---------- FOOTER ---------- */
+  .contact h2{ font-size:clamp(30px,6vw,72px); max-width:14ch; }
+  .contact-links{ display:flex; gap:clamp(18px,4vw,40px); margin-top:clamp(28px,5vw,44px); flex-wrap:wrap; }
+  .contact-links a{ font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.05em; text-transform:uppercase; border-bottom:1px solid var(--line); padding-bottom:6px; display:inline-flex; gap:8px; align-items:center; transition:.3s; }
+  .contact-links a:hover{ color:var(--gold-bright); border-color:var(--gold-bright); }
 
   footer{
     padding:10px clamp(10px,6vw,50px);
-
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-
-    font-family:'JetBrains Mono',monospace;
-
-    font-size:11px;
-    letter-spacing:.08em;
-
-    color:var(--paper-dim);
-
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.08em; color:var(--paper-dim);
     border-top:1px solid var(--line);
-
-    flex-wrap:wrap;
-
-    gap:10px;
+    flex-wrap:wrap; gap:10px;
   }
-
-  /* ---------- REVEAL ---------- */
-
-  [data-reveal]{
-    opacity:0;
-
-    transform:translateY(28px);
-
-    filter:blur(6px);
-
-    transition:
-      opacity .8s ease,
-      transform .8s ease,
-      filter .8s ease;
-  }
-
-  [data-reveal].in{
-    opacity:1;
-
-    transform:translateY(0);
-
-    filter:blur(0);
-  }
-
-  /* ---------- RESPONSIVIDADE HERO ---------- */
-
-  @media (max-width:900px){
-
-    .hero{
-      grid-template-columns:1fr 1fr;
-    }
-
-    .hero-frame-wrap{
-      aspect-ratio:3 / 4;
-      max-height:none;
-      border-radius:6px;
-    }
-
-    .frames{
-      grid-template-columns:1fr;
-    }
-
-    .trabalhos-panel .frames{
-      grid-template-columns:1fr;
-    }
-  }
-
-  @media (max-width:560px){
-
-    .hero{
-      grid-template-columns:.92fr 1.08fr;
-    }
-
-    .hero-frame-wrap{
-      aspect-ratio:3 / 4.4;
-      margin:14px;
-    }
-
-    .eyebrow{
-      font-size:10px;
-      letter-spacing:.16em;
-      gap:8px;
-    }
-
-    .eyebrow::before{
-      width:16px;
-    }
-
-    .hero-cta{
-      flex-direction:column;
-      align-items:stretch;
-      gap:10px;
-    }
-
-    .btn{
-      padding:12px 14px;
-      font-size:11px;
-
-      white-space:normal;
-
-      text-align:center;
-    }
-
-    .gallery-grid{
-      gap:4px;
-    }
-  }
-
-  @media (max-width:520px){
-
-    .cs-row{
-      grid-template-columns:1fr;
-    }
-
-    .cs-key{
-      border-right:none;
-      border-bottom:1px solid var(--line);
-    }
-  }
-
   @media (max-width:600px){
-
-    .lightbox-nav{
-      font-size:30px;
-      padding:8px 10px;
-    }
-
-    footer{
-      flex-direction:column;
-      align-items:center;
-      text-align:center;
-
-      gap:8px;
-
-      padding-top:20px;
-      padding-bottom:20px;
-    }
+    footer{ flex-direction:column; align-items:center; text-align:center; gap:8px; padding-top:20px; padding-bottom:20px; }
   }
+
+  [data-reveal]{ opacity:0; transform:translateY(28px); filter:blur(6px); transition:opacity .8s ease, transform .8s ease, filter .8s ease; }
+  [data-reveal].in{ opacity:1; transform:translateY(0); filter:blur(0); }
 </style>
 </head>
-
 <body>
 
 <div class="grain"></div>
 
-<!-- BARRA DE PROGRESSO -->
+
+<!-- BARRA DE PROGRESSO DE LEITURA -->
 <div class="scroll-progress" id="scroll-progress"></div>
 
-<!-- LIGHTBOX -->
+<!-- LIGHTBOX (usado por todas as galerias) -->
 <div class="lightbox" id="lightbox">
-
-  <button
-    type="button"
-    class="lightbox-close"
-    id="lightbox-close"
-    aria-label="Fechar"
-  >
-    ×
-  </button>
-
-  <button
-    type="button"
-    class="lightbox-nav prev"
-    id="lightbox-prev"
-    aria-label="Foto anterior"
-  >
-    ‹
-  </button>
-
-  <img
-    id="lightbox-img"
-    src=""
-    alt=""
-  >
-
-  <button
-    type="button"
-    class="lightbox-nav next"
-    id="lightbox-next"
-    aria-label="Próxima foto"
-  >
-    ›
-  </button>
-
+  <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Fechar">×</button>
+  <button type="button" class="lightbox-nav prev" id="lightbox-prev" aria-label="Foto anterior">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button type="button" class="lightbox-nav next" id="lightbox-next" aria-label="Próxima foto">›</button>
 </div>
 
-<!-- ==========================================================
-     HERO
-     ========================================================== -->
-
+<!-- HERO -->
 <header class="hero">
-
   <div class="hero-copy">
-
-    <span class="eyebrow">
-      Design, Storymaker e Fotografia
-    </span>
-
-    <h1>
-      As histórias que
-      <span class="i">merecem</span>
-      ser vistas.
-    </h1>
-
-    <p class="lede">
-      Fotografia, vídeo e design para transformar momentos em experiências que permanecem.
-    </p>
-
+    <span class="eyebrow">Design, Storymaker e Fotografia</span>
+    <h1>As histórias que <span class="i">merecem</span> ser vistas.</h1>
+    <p class="lede">Fotografia, vídeo e design para transformar momentos em experiências que permanecem.</p>
     <div class="hero-cta">
-
-      <button
-        type="button"
-        class="btn solid"
-        id="open-trabalhos"
-      >
-        Nossos trabalhos
-      </button>
-
-      <a
-        href="#contato"
-        class="btn ghost"
-      >
-        Falar comigo
-      </a>
-
+      <button type="button" class="btn solid" id="open-trabalhos">Nossos trabalhos</button>
+      <a href="#contato" class="btn ghost">Falar comigo</a>
     </div>
-
   </div>
 
   <div class="hero-frame-wrap">
-
-    <img
-      src="/WhatsApp Image 2026-08-27 at 22.53.46.jpeg"
-      alt="VI Agência Studio - foto de capa"
-    >
-
+    <img src="/WhatsApp Image 2026-08-27 at 22.53.46.jpeg" alt="VI Agência Studio - foto de capa">
     <div class="viewfinder"></div>
-
   </div>
-
 </header>
 
 
-<!-- ==========================================================
-     TRABALHOS
-     ========================================================== -->
-
-<div
-  class="trabalhos-overlay"
-  id="trabalhos-overlay"
->
-
+<!-- TRABALHOS (painel que abre ao clicar em "Nossos trabalhos") -->
+<div class="trabalhos-overlay" id="trabalhos-overlay">
   <div class="trabalhos-panel">
-
-    <button
-      type="button"
-      class="trabalhos-close"
-      id="close-trabalhos"
-      aria-label="Fechar"
-    >
-      ×
-    </button>
+    <button type="button" class="trabalhos-close" id="close-trabalhos" aria-label="Fechar">×</button>
 
     <div class="section-head">
-
-      <h2>
-        Trabalhos &amp; Orçamentos
-      </h2>
-
+      <h2>Trabalhos &amp; Orçamentos</h2>
     </div>
 
-
-    <!-- PORTFÓLIO -->
-
-    <p class="sub-label">
-      Portfólio
-    </p>
-
-
-    <!-- DIVINO BURGUER -->
-
-    <div
-      class="gallery-case"
-      data-reveal
-    >
-
+    <p class="sub-label">Portfólio</p>
+    <div class="gallery-case" data-reveal>
       <div class="gallery-case-head">
-
         <span class="fnum"></span>
-
         <h3></h3>
-
         <p></p>
-
       </div>
-
-      <div
-        class="gallery-grid"
-        data-gallery="divino-burguer"
-      >
-
-        <img
-          src="/WhatsApp Image 2026-08-30 at 23.32.25.jpeg"
-          alt="Divino Burguer - foto 1"
-          loading="lazy"
-        >
-
-        <img
-          src="/WhatsApp Image 2026-08-30 at 23.32.25.jpeg"
-          alt="Divino Burguer - foto 2"
-          loading="lazy"
-        >
-
-        <img
-          src="/WhatsApp Image 2026-08-30 at 23.32.25 (1).jpeg"
-          alt="Divino Burguer - foto 3"
-          loading="lazy"
-        >
-
+      <div class="gallery-grid" data-gallery="divino-burguer">
+        <img src="/WhatsApp Image 2026-08-30 at 23.32.25.jpeg" alt="Divino Burguer - foto 1" loading="lazy">
+        <img src="/WhatsApp Image 2026-08-30 at 23.32.25.jpeg" alt="Divino Burguer - foto 2" loading="lazy">
+        <img src="/WhatsApp Image 2026-08-30 at 23.32.25 (1).jpeg" alt="Divino Burguer - foto 3" loading="lazy">
       </div>
-
-      <a
-        class="view-link"
-        href="https://drive.google.com/drive/folders/1zWVaHAbrTXAwbkHe2_Aes8QTTRb2BDzD"
-        target="_blank"
-        rel="noopener"
-      >
-        ↳ Ver todas as fotos
-      </a>
-
+      <a class="view-link" href="https://drive.google.com/drive/folders/1zWVaHAbrTXAwbkHe2_Aes8QTTRb2BDzD" target="_blank" rel="noopener">↳ Ver todas as fotos</a>
     </div>
 
-
-    <!-- CASAMENTO -->
-
-    <div
-      class="gallery-case"
-      data-reveal
-    >
-
+    <div class="gallery-case" data-reveal>
       <div class="gallery-case-head">
-
         <span class="fnum"></span>
-
         <h3></h3>
-
         <p></p>
-
       </div>
-
-      <div
-        class="gallery-grid"
-        data-gallery="casamento"
-      >
-
-        <img
-          src="/WhatsApp Image 2026-08-30 at 23.32.17.jpeg"
-          alt="Casamento - foto 1"
-          loading="lazy"
-        >
-
-        <img
-          src="/WhatsApp Image 2026-08-30 at 23.32.17 (1).jpeg"
-          alt="Casamento - foto 2"
-          loading="lazy"
-        >
-
-        <img
-          src="/WhatsApp Image 2026-08-30 at 23.32.17 (2).jpeg"
-          alt="Casamento - foto 3"
-          loading="lazy"
-        >
-
+      <div class="gallery-grid" data-gallery="casamento">
+        <img src="/WhatsApp Image 2026-08-30 at 23.32.17.jpeg" alt="Casamento - foto 1" loading="lazy">
+        <img src="/WhatsApp Image 2026-08-30 at 23.32.17 (1).jpeg" alt="Casamento - foto 2" loading="lazy">
+        <img src="/WhatsApp Image 2026-08-30 at 23.32.17 (2).jpeg" alt="Casamento - foto 3" loading="lazy">
       </div>
-
-      <a
-        class="view-link"
-        href="https://drive.google.com/drive/folders/1vmb9A8rWMegHxKtRS6YxrsfUDQWOXgcU"
-        target="_blank"
-        rel="noopener"
-      >
-        ↳ Ver todas as fotos
-      </a>
-
+      <a class="view-link" href="https://drive.google.com/drive/folders/1vmb9A8rWMegHxKtRS6YxrsfUDQWOXgcU" target="_blank" rel="noopener">↳ Ver todas as fotos</a>
     </div>
 
-
-    <!-- CLÍNICA -->
-
-    <div
-      class="gallery-case"
-      data-reveal
-    >
-
+    <div class="gallery-case" data-reveal>
       <div class="gallery-case-head">
-
         <span class="fnum"></span>
-
         <h3></h3>
-
         <p></p>
-
       </div>
-
-      <div
-        class="gallery-grid"
-        data-gallery="clinica-odontologica"
-      >
-
-        <img
-          src="/WhatsApp Image 2026-08-30 at 23.32.34 (1).jpeg"
-          alt="Clínica Odontológica - foto 1"
-          loading="lazy"
-        >
-
-        <img
-          src="/WhatsApp Image 2026-08-30 at 23.32.34 (2).jpeg"
-          alt="Clínica Odontológica - foto 2"
-          loading="lazy"
-        >
-
-        <img
-          src="/WhatsApp Image 2026-08-30 at 23.32.34.jpeg"
-          alt="Clínica Odontológica - foto 3"
-          loading="lazy"
-        >
-
+      <div class="gallery-grid" data-gallery="clinica-odontologica">
+        <img src="/WhatsApp Image 2026-08-30 at 23.32.34 (1).jpeg" alt="Clínica Odontológica - foto 1" loading="lazy">
+        <img src="/WhatsApp Image 2026-08-30 at 23.32.34 (2).jpeg" alt="Clínica Odontológica - foto 2" loading="lazy">
+        <img src="/WhatsApp Image 2026-08-30 at 23.32.34.jpeg" alt="Clínica Odontológica - foto 3" loading="lazy">
       </div>
-
-      <a
-        class="view-link"
-        href="https://drive.google.com/drive/folders/1Pj87f79am5fUBIyB1ML10sw_DYi46PIM"
-        target="_blank"
-        rel="noopener"
-      >
-        ↳ Ver todas as fotos
-      </a>
-
+      <a class="view-link" href="https://drive.google.com/drive/folders/1Pj87f79am5fUBIyB1ML10sw_DYi46PIM" target="_blank" rel="noopener">↳ Ver todas as fotos</a>
     </div>
 
-
-    <!-- ======================================================
-         PACOTES
-         ====================================================== -->
-
-    <p class="sub-label">
-      Pacotes &amp; Preços
-    </p>
-
-    <div class="pricing-tabs">
-
-      <button
-        class="tab-btn active"
-        data-tab="empresarial"
-      >
-        Empresarial
-      </button>
-
-      <button
-        class="tab-btn"
-        data-tab="casamento"
-      >
-        Casamento
-      </button>
-
-    </div>
-
-
-    <!-- PACOTES EMPRESARIAIS -->
-
-    <div
-      class="pricing-panel active"
-      id="panel-empresarial"
-    >
-
-      <div class="price-grid">
-
-        <div class="price-card">
-
-          <span class="ptag">
-            Pacote Básico
-          </span>
-
-          <h3>
-            R$ 200,00
-          </h3>
-
-          <ul>
-
-            <li>
-              Pack de 20 fotos profissionais
-            </li>
-
-            <li>
-              1 reels editado de acordo com a marca
-            </li>
-
-          </ul>
-
-          <div class="obs">
-
-            <strong>OBS:</strong>
-            caso deseje um roteiro pronto e personalizado,
-            há valor adicional. Consulte no WhatsApp.
-
-          </div>
-
-        </div>
-
-
-        <div class="price-card">
-
-          <span class="ptag">
-            Pacote Intermediário
-          </span>
-
-          <h3>
-            R$ 350,00
-          </h3>
-
-          <ul>
-
-            <li>
-              Pack de 30 fotos profissionais
-            </li>
-
-            <li>
-              2 reels editados de acordo com a marca
-            </li>
-
-          </ul>
-
-          <div class="obs">
-
-            <strong>OBS:</strong>
-            caso deseje um roteiro pronto e personalizado,
-            há valor adicional. Consulte no WhatsApp.
-
-          </div>
-
-        </div>
-
-
-        <div class="price-card">
-
-          <span class="ptag">
-            Pacote Avançado
-          </span>
-
-          <h3>
-            R$ 480,00
-          </h3>
-
-          <ul>
-
-            <li>
-              Pack de 40 fotos profissionais
-            </li>
-
-            <li>
-              3 reels editados de acordo com a marca
-            </li>
-
-          </ul>
-
-          <div class="obs">
-
-            <strong>OBS:</strong>
-            caso deseje um roteiro pronto e personalizado,
-            há valor adicional. Consulte no WhatsApp.
-
-          </div>
-
-        </div>
-
-
-        <div class="price-card">
-
-          <span class="ptag">
-            Valores Individuais
-          </span>
-
-          <h3>
-            A partir de R$ 40,00
-          </h3>
-
-          <ul>
-
-            <li>
-              Pack com 10 fotos — R$ 40,00
-            </li>
-
-            <li>
-              1 reels com roteiro preparado pelo cliente — R$ 120,00
-            </li>
-
-          </ul>
-
-          <div class="obs">
-
-            <strong>OBS:</strong>
-            roteiro pronto e personalizado tem valor adicional.
-            Consulte no WhatsApp.
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <p class="pricing-note">
-        Fotografia por VI Agência Visual.
-      </p>
-
-    </div>
-
-
-    <!-- PACOTES CASAMENTO -->
-
-    <div
-      class="pricing-panel"
-      id="panel-casamento"
-    >
-
-      <div class="price-grid">
-
-        <div class="price-card">
-
-          <span class="ptag">
-            Básico · Cerimônia Religiosa
-          </span>
-
-          <h3>
-            R$ 500,00
-          </h3>
-
-          <ul>
-
-            <li>
-              Cobertura média de 3 horas
-            </li>
-
-            <li>
-              Stories ilimitados
-            </li>
-
-            <li>
-              Captação na vertical
-            </li>
-
-            <li>
-              1 reels resumindo o momento
-            </li>
-
-          </ul>
-
-          <div class="obs">
-
-            <strong>OBS:</strong>
-            os noivos escolhem o momento a registrar
-            (making of, cerimônia ou festa).
-
-          </div>
-
-        </div>
-
-
-        <div class="price-card">
-
-          <span class="ptag">
-            Intermediário · Cerimônia Religiosa
-          </span>
-
-          <h3>
-            R$ 800,00
-          </h3>
-
-          <ul>
-
-            <li>
-              Cobertura média de 6 horas
-            </li>
-
-            <li>
-              Publicação em tempo real
-            </li>
-
-            <li>
-              Stories ilimitados
-            </li>
-
-            <li>
-              Captação na vertical
-            </li>
-
-            <li>
-              1 reels resumindo os momentos
-            </li>
-
-          </ul>
-
-          <div class="obs">
-
-            <strong>OBS:</strong>
-            os noivos escolhem os momentos
-            (making of e cerimônia, ou cerimônia e festa).
-
-          </div>
-
-        </div>
-
-
-        <div class="price-card">
-
-          <span class="ptag">
-            Avançado · Cerimônia Religiosa
-          </span>
-
-          <h3>
-            R$ 1.000,00
-          </h3>
-
-          <ul>
-
-            <li>
-              Cobertura média de 8 horas
-            </li>
-
-            <li>
-              Cobertura completa e em tempo real
-            </li>
-
-            <li>
-              Stories ilimitados
-            </li>
-
-            <li>
-              Captação na vertical
-            </li>
-
-            <li>
-              2 reels completos do evento
-            </li>
-
-          </ul>
-
-          <div class="obs">
-
-            <strong>OBS:</strong>
-            todos os momentos são registrados
-            (making of, cerimônia e festa).
-
-          </div>
-
-        </div>
-
-
-        <div class="price-card">
-
-          <span class="ptag">
-            Pacote Civil
-          </span>
-
-          <h3>
-            R$ 350,00
-          </h3>
-
-          <ul>
-
-            <li>
-              Cobertura total do evento (antes, durante e pós)
-            </li>
-
-            <li>
-              1 reels completo do evento
-            </li>
-
-            <li>
-              Trends que o casal desejar
-            </li>
-
-          </ul>
-
-          <div class="obs">
-
-            <strong>OBS:</strong>
-            registra entrada dos noivos, assinatura,
-            troca de alianças, beijo, fotos do casal,
-            família e convidados.
-
-          </div>
-
-        </div>
-
-
-        <div class="price-card">
-
-          <span class="ptag">
-            Pré Wedding
-          </span>
-
-          <h3>
-            R$ 400,00
-          </h3>
-
-          <ul>
-
-            <li>
-              Cobertura média de 2 horas
-            </li>
-
-            <li>
-              Registro completo durante o período contratado
-            </li>
-
-            <li>
-              1 reels da sessão
-            </li>
-
-            <li>
-              Trends que o casal desejar
-            </li>
-
-          </ul>
-
-          <div class="obs">
-
-            <strong>OBS:</strong>
-            stories individuais, poses e composições,
-            detalhes e momentos espontâneos do casal.
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <p class="pricing-note">
-        Fotografia por VI Agência Visual.
-      </p>
-
-    </div>
-
-
-    <div
-      class="hero-cta"
-      style="margin-top:36px;"
-    >
-
-      <a
-        href="https://wa.me/556195709493"
-        target="_blank"
-        rel="noopener"
-        class="btn solid"
-      >
-        Ficou com dúvida? Fale no WhatsApp
-      </a>
-
-    </div>
-
+  <p class="sub-label">Pacotes &amp; Preços</p>
+
+  <div class="pricing-tabs">
+    <button class="tab-btn active" data-tab="empresarial">Empresarial</button>
+    <button class="tab-btn" data-tab="casamento">Casamento</button>
   </div>
 
+  <!-- PACOTES EMPRESARIAIS -->
+  <div class="pricing-panel active" id="panel-empresarial">
+    <div class="price-grid">
+      <div class="price-card">
+        <span class="ptag">Pacote Básico</span>
+        <h3>R$ 200,00</h3>
+        <ul>
+          <li>Pack de 20 fotos profissionais</li>
+          <li>1 reels editado de acordo com a marca</li>
+        </ul>
+        <div class="obs"><strong>OBS:</strong> caso deseje um roteiro pronto e personalizado, há valor adicional. Consulte no WhatsApp.</div>
+      </div>
+      <div class="price-card">
+        <span class="ptag">Pacote Intermediário</span>
+        <h3>R$ 350,00</h3>
+        <ul>
+          <li>Pack de 30 fotos profissionais</li>
+          <li>2 reels editados de acordo com a marca</li>
+        </ul>
+        <div class="obs"><strong>OBS:</strong> caso deseje um roteiro pronto e personalizado, há valor adicional. Consulte no WhatsApp.</div>
+      </div>
+      <div class="price-card">
+        <span class="ptag">Pacote Avançado</span>
+        <h3>R$ 480,00</h3>
+        <ul>
+          <li>Pack de 40 fotos profissionais</li>
+          <li>3 reels editados de acordo com a marca</li>
+        </ul>
+        <div class="obs"><strong>OBS:</strong> caso deseje um roteiro pronto e personalizado, há valor adicional. Consulte no WhatsApp.</div>
+      </div>
+      <div class="price-card">
+        <span class="ptag">Valores Individuais</span>
+        <h3>A partir de R$ 40,00</h3>
+        <ul>
+          <li>Pack com 10 fotos — R$ 40,00</li>
+          <li>1 reels com roteiro preparado pelo cliente — R$ 120,00</li>
+        </ul>
+        <div class="obs"><strong>OBS:</strong> roteiro pronto e personalizado tem valor adicional. Consulte no WhatsApp.</div>
+      </div>
+    </div>
+    <p class="pricing-note">Fotografia por VI Agência Visual.</p>
+  </div>
+
+  <!-- PACOTES DE CASAMENTO -->
+  <div class="pricing-panel" id="panel-casamento">
+    <div class="price-grid">
+      <div class="price-card">
+        <span class="ptag">Básico · Cerimônia Religiosa</span>
+        <h3>R$ 500,00</h3>
+        <ul>
+          <li>Cobertura média de 3 horas</li>
+          <li>Stories ilimitados</li>
+          <li>Captação na vertical</li>
+          <li>1 reels resumindo o momento</li>
+        </ul>
+        <div class="obs"><strong>OBS:</strong> os noivos escolhem o momento a registrar (making of, cerimônia ou festa).</div>
+      </div>
+      <div class="price-card">
+        <span class="ptag">Intermediário · Cerimônia Religiosa</span>
+        <h3>R$ 800,00</h3>
+        <ul>
+          <li>Cobertura média de 6 horas</li>
+          <li>Publicação em tempo real</li>
+          <li>Stories ilimitados</li>
+          <li>Captação na vertical</li>
+          <li>1 reels resumindo os momentos</li>
+        </ul>
+        <div class="obs"><strong>OBS:</strong> os noivos escolhem os momentos (making of e cerimônia, ou cerimônia e festa).</div>
+      </div>
+      <div class="price-card">
+        <span class="ptag">Avançado · Cerimônia Religiosa</span>
+        <h3>R$ 1.000,00</h3>
+        <ul>
+          <li>Cobertura média de 8 horas</li>
+          <li>Cobertura completa e em tempo real</li>
+          <li>Stories ilimitados</li>
+          <li>Captação na vertical</li>
+          <li>2 reels completos do evento</li>
+        </ul>
+        <div class="obs"><strong>OBS:</strong> todos os momentos são registrados (making of, cerimônia e festa).</div>
+      </div>
+      <div class="price-card">
+        <span class="ptag">Pacote Civil</span>
+        <h3>R$ 350,00</h3>
+        <ul>
+          <li>Cobertura total do evento (antes, durante e pós)</li>
+          <li>1 reels completo do evento</li>
+          <li>Trends que o casal desejar</li>
+        </ul>
+        <div class="obs"><strong>OBS:</strong> registra entrada dos noivos, assinatura, troca de alianças, beijo, fotos do casal, família e convidados.</div>
+      </div>
+      <div class="price-card">
+        <span class="ptag">Pré Wedding</span>
+        <h3>R$ 400,00</h3>
+        <ul>
+          <li>Cobertura média de 2 horas</li>
+          <li>Registro completo durante o período contratado</li>
+          <li>1 reels da sessão</li>
+          <li>Trends que o casal desejar</li>
+        </ul>
+        <div class="obs"><strong>OBS:</strong> stories individuais, poses e composições, detalhes e momentos espontâneos do casal.</div>
+      </div>
+    </div>
+    <p class="pricing-note">Fotografia por VI Agência Visual.</p>
+  </div>
+
+    <div class="hero-cta" style="margin-top:36px;">
+      <a href="https://wa.me/556195709493" target="_blank" rel="noopener" class="btn solid">Ficou com dúvida? Fale no WhatsApp</a>
+    </div>
+  </div>
 </div>
 
 
-<!-- ==========================================================
-     SOBRE
-     ========================================================== -->
-
+<!-- SOBRE -->
 <section id="sobre">
-
-  <div
-    class="section-head"
-    data-reveal
-  >
-
-    <h2>
-      Sobre
-    </h2>
-
+  <div class="section-head" data-reveal>
+    <h2>Sobre</h2>
   </div>
 
-
   <div class="about">
-
-    <!-- TEXTO -->
-
     <div data-reveal>
-
-      <p class="lede">
-        Duas pessoas. Uma visão. Infinitas possibilidades.
-      </p>
-
+      <p class="lede">Duas pessoas. Uma visão. Infinitas possibilidades.</p>
       <p class="body-text">A VI AGÊNCIA VISUAL nasceu da união de Vinicius e Izabel, dois criativos apaixonados por transformar ideias em imagens, vídeos e experiências.
 Trabalhamos com Design, Storymaker e Filmmaker, criando conteúdos autênticos que conectam marcas e pessoas.
 Duas pessoas, uma visão e muitas histórias para contar.
 
 VI AGÊNCIA VISUAL
-Design, movimento e histórias que conectam.
+Design, movimento  e histórias que conectam.
 </p>
-
     </div>
 
-
-    <!-- FOTO DO CASAL -->
-
-    <img
-      class="about-photo"
-      data-reveal
-      src="/WhatsApp Image 2026-08-29 at 10.49.08.jpeg"
-      alt="Vinicius e Izabel, fundadores da VI Agência Studio"
-    >
-
+    <img class="about-photo" data-reveal src="/WhatsApp Image 2026-08-29 at 10.49.08.jpeg" alt="Vinicius e Izabel, fundadores da VI Agência Studio">
   </div>
-
 </section>
 
-
-<!-- ==========================================================
-     CONTATO
-     ========================================================== -->
-
-<section
-  id="contato"
-  class="contact"
->
-
-  <div
-    class="slate"
-    data-reveal
-  >
-
-    <h2>
-      Vamos contar<br>
-      essa história?
-    </h2>
-
+<!-- CONTATO -->
+<section id="contato" class="contact">
+  <div class="slate" data-reveal>
+    <h2>Vamos contar<br>essa história?</h2>
     <div class="contact-links">
-
-      <a href="mailto:viagenciavisual@gmail.com">
-        ↳ Nosso Gmail
-      </a>
-
-      <a
-        href="https://wa.me/556195709493"
-        target="_blank"
-        rel="noopener"
-      >
-        ↳ WhatsApp
-      </a>
-
-      <a
-        href="https://www.instagram.com/vi.smdesign?igsi=MXQzdGw2aWN2MHU0MA=="
-        target="_blank"
-        rel="noopener"
-      >
-        ↳ Instagram
-      </a>
-
+      <a href="mailto:viagenciavisual@gmail.com">↳ Nosso Gmail</a>
+      <a href="https://wa.me/556195709493" target="_blank" rel="noopener">↳ WhatsApp</a>
+      <a href="https://www.instagram.com/vi.smdesign?igsi=MXQzdGw2aWN2MHU0MA==" target="_blank" rel="noopener">↳ Instagram</a>
     </div>
-
   </div>
-
 </section>
-
-
-<!-- ==========================================================
-     FOOTER
-     ========================================================== -->
 
 <footer>
-
+  <span>© 2026 VI Agência Visual</span>
   <span>
-    © 2026 VI Agência Visual
-  </span>
-
-  <span>
-
     Feito por
+    <a 
+      href="https://www.instagram.com/daviiddev/" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
+      @daviiddev - daviidx7
+    </a>
+  </span>
+</footer>
 
-    <a
-      href="https://www.instagram.com/daviiddev/"
+<script>
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      entry.target.classList.toggle('in', entry.isIntersecting);
+    });
+  }, { threshold:0.15 });
+
+  document.querySelectorAll('[data-reveal], .frame').forEach(el=> observer.observe(el));
+
+  // Animação de "letras caindo" no título da capa, ao carregar o site
+  (function animateHeroTitle(){
+    const h1 = document.querySelector('.hero-copy h1');
+    if(!h1) return;
+    let letterIndex = 0;
+    const baseDelay = 0.35; // segundos, para começar depois do eyebrow
+
+    function makeLetterSpan(ch){
+      const span = document.createElement('span');
+      span.className = 'letter';
+      span.style.animationDelay = (baseDelay + letterIndex * 0.028) + 's';
+      span.textContent = ch;
+      letterIndex++;
+      return span;
+    }
+
+    // Agrupa as letras de cada palavra num bloco só (inline-block),
+    // assim a quebra de linha só acontece nos espaços entre palavras,
+    // nunca no meio de uma palavra.
+    function wrapTextNode(node){
+      const frag = document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach(token=>{
+        if(token === '') return;
+        if(/^\s+$/.test(token)){
+          frag.appendChild(document.createTextNode(token));
+        } else {
+          const wordSpan = document.createElement('span');
+          wordSpan.style.display = 'inline-block';
+          token.split('').forEach(ch=> wordSpan.appendChild(makeLetterSpan(ch)));
+          frag.appendChild(wordSpan);
+        }
+      });
+      node.parentNode.replaceChild(frag, node);
+    }
+
+    function processContainer(el){
+      Array.from(el.childNodes).forEach(node=>{
+        if(node.nodeType === Node.TEXT_NODE){
+          wrapTextNode(node);
+        } else if(node.nodeType === Node.ELEMENT_NODE){
+          processContainer(node);
+        }
+      });
+    }
+
+    processContainer(h1);
+    h1.classList.add('letters-ready');
+  })();
+
+
+  // Barra de progresso de leitura
+  const scrollProgress = document.getElementById('scroll-progress');
+  function updateScrollProgress(){
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    scrollProgress.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateScrollProgress, { passive:true });
+  updateScrollProgress();
+
+  // Botões magnéticos e efeito 3D (apenas em telas com mouse)
+  const hasFineCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if(hasFineCursor){
+    // Botões magnéticos: seguem levemente o cursor por cima
+    document.querySelectorAll('.btn').forEach(btn=>{
+      btn.addEventListener('mousemove', (e)=>{
+        const rect = btn.getBoundingClientRect();
+        const relX = e.clientX - rect.left - rect.width/2;
+        const relY = e.clientY - rect.top - rect.height/2;
+        btn.style.transform = `translate(${relX*0.18}px, ${relY*0.35 - 2}px)`;
+      });
+      btn.addEventListener('mouseleave', ()=>{ btn.style.transform = ''; });
+    });
+
+    // Efeito 3D (tilt) nas fotos da galeria, na foto do Sobre e nos cards de preço
+    document.querySelectorAll('.gallery-grid img, .about-photo, .price-card').forEach(el=>{
+      el.addEventListener('mousemove', (e)=>{
+        const rect = el.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width - 0.5;
+        const py = (e.clientY - rect.top) / rect.height - 0.5;
+        el.style.transform = `perspective(600px) rotateX(${-py*10}deg) rotateY(${px*10}deg) scale(1.03)`;
+      });
+      el.addEventListener('mouseleave', ()=>{ el.style.transform = ''; });
+    });
+  }
+
+  // Abrir/fechar o painel de Trabalhos & Orçamentos
+  const trabalhosOverlay = document.getElementById('trabalhos-overlay');
+  const openTrabalhosBtn = document.getElementById('open-trabalhos');
+  const closeTrabalhosBtn = document.getElementById('close-trabalhos');
+
+  function openTrabalhos(){
+    trabalhosOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    trabalhosOverlay.querySelectorAll('[data-reveal], .frame').forEach(el=> el.classList.add('in'));
+  }
+  function closeTrabalhos(){
+    trabalhosOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  openTrabalhosBtn.addEventListener('click', openTrabalhos);
+  closeTrabalhosBtn.addEventListener('click', closeTrabalhos);
+  trabalhosOverlay.addEventListener('click', (e)=>{ if(e.target === trabalhosOverlay) closeTrabalhos(); });
+
+  // Alternar abas de preços (Empresarial / Casamento)
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=> b.classList.remove('active'));
+      document.querySelectorAll('.pricing-panel').forEach(p=> p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Galeria de fotos + Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  let currentGalleryImgs = [];
+  let currentIndex = 0;
+
+  function galleryImages(name){
+    return Array.from(document.querySelectorAll('.gallery-grid[data-gallery="' + name + '"] img'));
+  }
+  function showLightboxImage(){
+    const img = currentGalleryImgs[currentIndex];
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+  }
+  function openLightbox(name, index){
+    currentGalleryImgs = galleryImages(name);
+    if(currentGalleryImgs.length === 0) return;
+    currentIndex = index;
+    showLightboxImage();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = trabalhosOverlay.classList.contains('open') ? 'hidden' : '';
+  }
+  function nextImage(){ currentIndex = (currentIndex + 1) % currentGalleryImgs.length; showLightboxImage(); }
+  function prevImage(){ currentIndex = (currentIndex - 1 + currentGalleryImgs.length) % currentGalleryImgs.length; showLightboxImage(); }
+
+  document.querySelectorAll('.gallery-grid img').forEach(img=>{
+    // some fotos podem ainda não existir na pasta - remove o quadrado quebrado automaticamente
+    img.addEventListener('error', function(){ this.remove(); });
+    img.addEventListener('click', function(){
+      const galleryName = this.closest('.gallery-grid').dataset.gallery;
+      const imgs = galleryImages(galleryName);
+      const idx = imgs.indexOf(this);
+      openLightbox(galleryName, idx);
+    });
+  });
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-next').addEventListener('click', nextImage);
+  document.getElementById('lightbox-prev').addEventListener('click', prevImage);
+  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+
+  document.addEventListener('keydown', (e)=>{
+    if(lightbox.classList.contains('open')){
+      if(e.key === 'Escape') closeLightbox();
+      if(e.key === 'ArrowRight') nextImage();
+      if(e.key === 'ArrowLeft') prevImage();
+      return;
+    }
+    if(e.key === 'Escape') closeTrabalhos();
+  });
+</script>
+
+</body>
+</html>
