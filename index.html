@@ -398,25 +398,30 @@
   .pricing-note a{ color:var(--gold-bright); border-bottom:1px solid var(--gold-bright); }
 
 
-  .about{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap:clamp(20px,5vw,70px); align-items:stretch; }
+  .about-tagline{
+    font-size:clamp(24px,4vw,40px);
+    font-family:'Fraunces', serif; font-style:italic; font-weight:400;
+    line-height:1.3;
+    color:var(--paper);
+    max-width:22ch;
+    margin-bottom:clamp(32px,6vw,56px);
+  }
+
+  .about{ display:grid; grid-template-columns: 0.95fr 1.05fr; gap:clamp(28px,5vw,64px); align-items:center; }
   @media (max-width:900px){ .about{ grid-template-columns: 1fr 1fr; gap:20px; } }
-  @media (max-width:560px){ .about{ grid-template-columns: 0.95fr 1.05fr; gap:14px; } }
-  .about .lede{ font-size:clamp(17px,2.6vw,30px); font-family:'Fraunces', serif; font-style:italic; font-weight:400; line-height:1.35; color:var(--paper); max-width:24ch; }
-  .about p.body-text{ margin-top:18px; color:var(--paper-dim); line-height:1.7; font-size:clamp(12.5px,1.6vw,15px); max-width:52ch; white-space:pre-line; }
+  @media (max-width:560px){ .about{ grid-template-columns: 0.9fr 1.1fr; gap:12px; } }
+  .about p.body-text{ color:var(--paper-dim); line-height:1.65; font-size:clamp(11.5px,1.6vw,15.5px); max-width:46ch; white-space:pre-line; }
 
   .about-photo{
     width:100%;
-    height:100%;
-    min-height:260px;
-    max-height:640px;
+    aspect-ratio: 4 / 5;
     object-fit:cover;
     object-position: center 22%;
-    border-radius:4px;
+    border-radius:6px;
     display:block;
   }
   @media (max-width:560px){
-    .about-photo{ border-radius:6px; max-height:52vh; }
-    .about .lede{ font-size:19px; line-height:1.3; max-width:19ch; }
+    .about-photo{ aspect-ratio: 3 / 4; border-radius:6px; }
   }
 
   .callsheet{ border:1px solid var(--line); }
@@ -667,16 +672,13 @@
     <h2>Sobre</h2>
   </div>
 
+  <p class="about-tagline" data-reveal>Duas pessoas. Uma visão. Infinitas possibilidades.</p>
+
   <div class="about">
     <div data-reveal>
-      <p class="lede">Duas pessoas. Uma visão. Infinitas possibilidades.</p>
-      <p class="body-text">A VI AGÊNCIA VISUAL nasceu da união de Vinicius e Izabel, dois criativos apaixonados por transformar ideias em imagens, vídeos e experiências.
-Trabalhamos com Design, Storymaker e Filmmaker, criando conteúdos autênticos que conectam marcas e pessoas.
-Duas pessoas, uma visão e muitas histórias para contar.
+      <p class="body-text">A VI AGÊNCIA VISUAL nasceu da união de Vinicius e Izabel — dois criativos apaixonados por transformar ideias em imagens, vídeos e experiências que conectam marcas e pessoas.
 
-VI AGÊNCIA VISUAL
-Design, movimento  e histórias que conectam.
-</p>
+Trabalhamos com design, storymaking e filmmaking, sempre com o mesmo objetivo: contar histórias que ficam.</p>
     </div>
 
     <img class="about-photo" data-reveal src="/WhatsApp Image 2026-08-29 at 10.49.08.jpeg" alt="Vinicius e Izabel, fundadores da VI Agência Studio">
