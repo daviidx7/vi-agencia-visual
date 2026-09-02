@@ -400,79 +400,23 @@
   .pricing-note a{ color:var(--gold-bright); border-bottom:1px solid var(--gold-bright); }
 
 
-  /* ---------- SOBRE ---------- */
-  .about{
-    display:grid;
-    grid-template-columns:minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap:clamp(22px,5vw,70px);
-    align-items:stretch;
-  }
-
-  .about-copy{ min-width:0; }
-
-  .about .lede{
-    font-size:clamp(19px,2.6vw,30px);
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    font-weight:400;
-    line-height:1.3;
-    color:var(--paper);
-    max-width:22ch;
-  }
-
-  .about p.body-text{
-    margin-top:22px;
-    color:var(--paper-dim);
-    line-height:1.7;
-    font-size:clamp(13px,1.6vw,15px);
-    max-width:48ch;
-    white-space:normal;
-  }
+  .about{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap:clamp(20px,5vw,70px); align-items:stretch; }
+  @media (max-width:900px){ .about{ grid-template-columns: 1fr 1fr; gap:20px; } }
+  @media (max-width:560px){ .about{ grid-template-columns: 0.95fr 1.05fr; gap:14px; } }
+  .about .lede{ font-size:clamp(17px,2.6vw,30px); font-family:'Fraunces', serif; font-style:italic; font-weight:400; line-height:1.35; color:var(--paper); max-width:24ch; }
+  .about p.body-text{ margin-top:18px; color:var(--paper-dim); line-height:1.7; font-size:clamp(12.5px,1.6vw,15px); max-width:52ch; white-space:pre-line; }
 
   .about-photo{
     width:100%;
-    height:170%;
-    min-height:0;
-    object-fit:contain;
-    object-position:center;
-    border-radius:6px;
+    height:100%;
+    min-height:260px;
+    object-fit:cover;
+    object-position: center 22%;
+    border-radius:4px;
     display:block;
-    align-self:stretch;
-    background:var(--ink);
   }
-
-  @media (max-width:900px){
-    .about{
-      grid-template-columns:minmax(0, 0.88fr) minmax(0, 1.12fr);
-      gap:20px;
-    }
-  }
-
   @media (max-width:560px){
-    .about{
-      grid-template-columns:minmax(0, 0.82fr) minmax(0, 1.18fr);
-      gap:16px;
-      align-items:stretch;
-    }
-
-    .about .lede{
-      font-size:clamp(18px,5.2vw,24px);
-      line-height:1.28;
-    }
-
-    .about p.body-text{
-      margin-top:18px;
-      font-size:clamp(12px,3.35vw,14px);
-      line-height:1.62;
-    }
-
-    .about-photo{
-      width:100%;
-      height:100%;
-      min-height:0;
-      object-fit:contain;
-      border-radius:6px;
-    }
+    .about-photo{ border-radius:6px; }
   }
 
   .callsheet{ border:1px solid var(--line); }
@@ -724,16 +668,18 @@
   </div>
 
   <div class="about">
-    <div class="about-copy" data-reveal>
+    <div data-reveal>
       <p class="lede">Duas pessoas. Uma visão. Infinitas possibilidades.</p>
-      <p class="body-text">A VI Agência Visual nasceu da união de Vinicius e Izabel, dois criativos que encontraram na imagem uma forma de contar histórias.
+      <p class="body-text">A VI AGÊNCIA VISUAL nasceu da união de Vinicius e Izabel, dois criativos apaixonados por transformar ideias em imagens, vídeos e experiências.
+Trabalhamos com Design, Storymaker e Filmmaker, criando conteúdos autênticos que conectam marcas e pessoas.
+Duas pessoas, uma visão e muitas histórias para contar.
 
-      Entre fotografia, vídeo e design, transformamos ideias em conteúdos autênticos, com identidade e propósito.
-
-      Mais do que registrar momentos, criamos experiências que aproximam marcas e pessoas.</p>
+VI AGÊNCIA VISUAL
+Design, movimento  e histórias que conectam.
+</p>
     </div>
 
-    <img class="about-photo" data-reveal src="/WhatsApp Image 2026-08-29 at 10.49.08.jpeg" alt="Vinicius e Izabel, fundadores da VI Agência Visual">
+    <img class="about-photo" data-reveal src="/WhatsApp Image 2026-08-29 at 10.49.08.jpeg" alt="Vinicius e Izabel, fundadores da VI Agência Studio">
   </div>
 </section>
 
@@ -847,8 +793,8 @@
       btn.addEventListener('mouseleave', ()=>{ btn.style.transform = ''; });
     });
 
-    // Efeito 3D (tilt) nas fotos da galeria e nos cards de preço
-    document.querySelectorAll('.gallery-grid img, .price-card').forEach(el=>{
+    // Efeito 3D (tilt) nas fotos da galeria, na foto do Sobre e nos cards de preço
+    document.querySelectorAll('.gallery-grid img, .about-photo, .price-card').forEach(el=>{
       el.addEventListener('mousemove', (e)=>{
         const rect = el.getBoundingClientRect();
         const px = (e.clientX - rect.left) / rect.width - 0.5;
