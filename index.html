@@ -457,6 +457,12 @@
 
   [data-reveal]{ opacity:0; transform:translateY(28px); filter:blur(6px); transition:opacity .8s ease, transform .8s ease, filter .8s ease; }
   [data-reveal].in{ opacity:1; transform:translateY(0); filter:blur(0); }
+
+  /* ---------- AJUSTES SÓ PARA DESKTOP/NOTEBOOK (não afeta celular) ---------- */
+  @media (min-width:901px){
+    .about p.body-text{ font-size:clamp(22px,1.9vw,26px); line-height:1.7; max-width:20ch; }
+    .about-tagline{ font-size:clamp(32px,3.2vw,44px); }
+  }
 </style>
 </head>
 <body>
@@ -512,8 +518,8 @@
       </div>
       <div class="gallery-grid" data-gallery="divino-burguer">
         <img src="/WhatsApp Image 2026-08-30 at 23.32.25.jpeg" alt="Divino Burguer - foto 1" loading="lazy">
-        <img src="/WhatsApp Image 2026-08-30 at 23.32.25.jpeg" alt="Divino Burguer - foto 2" loading="lazy">
-        <img src="/WhatsApp Image 2026-08-30 at 23.32.25 (1).jpeg" alt="Divino Burguer - foto 3" loading="lazy">
+        <img src="/WhatsApp Image 2026-08-30 at 23.32.25 (1).jpeg" alt="Divino Burguer - foto 2" loading="lazy">
+        <img src="/WhatsApp Image 2026-08-30 at 23.32.25 (2).jpeg" alt="Divino Burguer - foto 3" loading="lazy">
       </div>
       <a class="view-link" href="https://drive.google.com/drive/folders/1zWVaHAbrTXAwbkHe2_Aes8QTTRb2BDzD" target="_blank" rel="noopener">↳ Ver todas as fotos</a>
     </div>
