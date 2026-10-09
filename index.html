@@ -528,6 +528,7 @@
   <div class="pricing-tabs">
     <button class="tab-btn active" data-tab="empresarial">Empresarial</button>
     <button class="tab-btn" data-tab="casamento">Casamento</button>
+    <button class="tab-btn" data-tab="guia-casamento">Guia de Casamento</button>
   </div>
 
   <!-- PACOTES EMPRESARIAIS -->
@@ -636,6 +637,67 @@
     <p class="pricing-note">Fotografia por VI Agência Visual.</p>
   </div>
 
+  <!-- GUIA DE CASAMENTO (conteúdo oficial do PDF "Serviços e Guia de Preços") -->
+  <div class="pricing-panel" id="panel-guia-casamento">
+    <div class="price-grid">
+      <div class="price-card">
+        <span class="ptag">Pacote Básico · Cerimônia Religiosa</span>
+        <h3>R$ 600,00</h3>
+        <ul>
+          <li>Cobertura fotográfica de 3 horas</li>
+          <li>Quantidade de fotos ilimitadas</li>
+          <li>Fotos tratadas e editadas</li>
+          <li>Entrega de álbum digital</li>
+        </ul>
+        <div class="obs"><strong>OBS:</strong> fica a critério dos noivos a escolha do momento que será registrado (making of dos noivos, cerimônia ou festa).</div>
+      </div>
+      <div class="price-card">
+        <span class="ptag">Pacote Intermediário · Cerimônia Religiosa</span>
+        <h3>R$ 850,00</h3>
+        <ul>
+          <li>Cobertura fotográfica de 6 horas</li>
+          <li>Quantidade de fotos ilimitadas</li>
+          <li>Fotos tratadas e editadas</li>
+          <li>Entrega de álbum digital</li>
+        </ul>
+        <div class="obs"><strong>OBS:</strong> fica a critério dos noivos a escolha do momento (making of dos noivos e cerimônia, ou cerimônia e festa).</div>
+      </div>
+      <div class="price-card">
+        <span class="ptag">Pacote Avançado · Cerimônia Religiosa</span>
+        <h3>R$ 1.200,00</h3>
+        <ul>
+          <li>Cobertura fotográfica de 8 horas</li>
+          <li>Quantidade de fotos ilimitadas</li>
+          <li>Cobertura completa do evento</li>
+          <li>Entrega de álbum digital</li>
+        </ul>
+        <div class="obs"><strong>OBS:</strong> será registrado todos os momentos (making of dos noivos, cerimônia e festa).</div>
+      </div>
+      <div class="price-card">
+        <span class="ptag">Pacote Civil</span>
+        <h3>R$ 400,00</h3>
+        <ul>
+          <li>Cobertura fotográfica total do evento (antes, durante e pós cerimônia)</li>
+          <li>Fotos profissionais sem limite definido</li>
+          <li>Entrega do álbum digital</li>
+        </ul>
+        <div class="obs"><strong>OBS — momentos registrados:</strong> entrada e chegada dos noivos, cerimônia e assinatura dos documentos, troca de alianças, beijo e comemoração, fotos do casal, registros com familiares e convidados, momentos espontâneos e detalhes do evento.</div>
+      </div>
+      <div class="price-card">
+        <span class="ptag">Pacote Pré Wedding</span>
+        <h3>R$ 450,00</h3>
+        <ul>
+          <li>Cobertura fotográfica de 2 horas</li>
+          <li>Registro completo durante o período contratado</li>
+          <li>Fotos tratadas e editadas</li>
+          <li>Entrega do álbum digital</li>
+        </ul>
+        <div class="obs"><strong>OBS — momentos registrados:</strong> retratos individuais do casal, fotos românticas e espontâneas, interação e conexão entre os noivos, diferentes poses e composições, registros aproveitando o cenário, detalhes e pequenos momentos, fotos para redes sociais e convite de casamento.</div>
+      </div>
+    </div>
+    <p class="pricing-note">Fotografia por VI Agência Visual — serviços e guia de preços oficial.</p>
+  </div>
+
     <div class="hero-cta" style="margin-top:36px;">
       <a href="https://wa.me/556195709493" target="_blank" rel="noopener" class="btn solid">Ficou com dúvida? Fale no WhatsApp</a>
     </div>
@@ -675,9 +737,9 @@
   <span>© 2026 VI Agência Visual</span>
   <span>
     Feito por
-    <a 
-      href="https://www.instagram.com/daviiddev/" 
-      target="_blank" 
+    <a
+      href="https://www.instagram.com/daviiddev/"
+      target="_blank"
       rel="noopener noreferrer"
     >
       @daviiddev - David Ferreira
@@ -781,7 +843,7 @@
     });
   }
 
-  // Alternar abas de preços (Empresarial / Casamento)
+  // Alternar abas de preços (Empresarial / Casamento / Guia de Casamento)
   document.querySelectorAll('.tab-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       document.querySelectorAll('.tab-btn').forEach(b=> b.classList.remove('active'));
